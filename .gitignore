@@ -1,0 +1,57 @@
+# Xcode
+*.pbxuser
+*.perspectivev3
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+xcuserdata/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+*.xcarchive
+.swiftpm/
+.build/
+
+# Firebase и конфиги (ЧУВСТВИТЕЛЬНЫЕ ФАЙЛЫ!)
+GoogleService-Info.plist
+GoogleService-Info-*.plist
+Info.plist
+Pods/
+Podfile.lock
+
+# Переменные окружения
+.env
+.env.local
+config.private.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.temp
+
+# IDE user settings
+*.xcuserstate
+project.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Xcode derived data
+build/
+dist/

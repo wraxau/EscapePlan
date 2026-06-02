@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GROQ_API_KEY</key>
+	<string>YOUR_GROQ_API_KEY_HERE</string>
+	<key>NSUserNotificationUsageDescription</key>
+	<string>Напоминания о запланированных активностях в поездке</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Доступ к галерее для добавления фотографий и воспоминаний в поездку</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Доступ к геолокации для определения местоположения и выбора мест на карте</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Доступ к геолокации для работы с картой и поиска мест</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>delago.ttf</string>
+	</array>
+</dict>
+</plist>

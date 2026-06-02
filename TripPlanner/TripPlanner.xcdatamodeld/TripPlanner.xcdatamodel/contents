@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24299" systemVersion="25D2128" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Activity" representedClassName="Activity" syncable="YES" codeGenerationType="class">
+        <attribute name="budget" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="categoryColor" optional="YES" attributeType="String" defaultValueString="#FF4B8B"/>
+        <attribute name="categoryName" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="reminderDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="reminderEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String" defaultValueString=""/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="locationName" optional="YES" attributeType="String"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+
+        <relationship name="dayPlan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPlan" inverseName="activities" inverseEntity="DayPlan"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="activities" inverseEntity="Trip"/>
+    </entity>
+    <entity name="DayPlan" representedClassName="DayPlan" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <relationship name="activities" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Activity" inverseName="dayPlan" inverseEntity="Activity"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="dayPlan" inverseEntity="Expense"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="dayPlan" inverseEntity="Place"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="dayPlans" inverseEntity="Trip"/>
+    </entity>
+    <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="category" attributeType="String" defaultValueString="other"/>
+        <attribute name="currency" optional="YES" attributeType="String" defaultValueString="USD"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="debtStatus" optional="YES" attributeType="String" defaultValueString="pending"/>
+        <attribute name="descriptionText" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isShared" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="myDebtAmount" optional="YES" attributeType="Decimal"/>
+        <attribute name="sharedWithParticipantIDs" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="[UUID]"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="dayPlan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPlan" inverseName="expenses" inverseEntity="DayPlan"/>
+        <relationship name="paidBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Participant" inverseName="expenses" inverseEntity="Participant"/>
+        <relationship name="trip" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="expenses" inverseEntity="Trip"/>
+    </entity>
+    <entity name="Participant" representedClassName="Participant" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="firebaseUID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isOwner" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="number" optional="YES" attributeType="String"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="paidBy" inverseEntity="Expense"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="participants" inverseEntity="Trip"/>
+    </entity>
+    <entity name="Place" representedClassName="Place" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="checkInDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="checkOutDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="type" attributeType="String" defaultValueString="attraction"/>
+        <relationship name="dayPlan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPlan" inverseName="places" inverseEntity="DayPlan"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="places" inverseEntity="Trip"/>
+    </entity>
+    <entity name="Trip" representedClassName="Trip" syncable="YES" codeGenerationType="class">
+        <attribute name="coverImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="currencyCode" attributeType="String" defaultValueString="USD"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="ownerFirebaseUID" optional="YES" attributeType="String"/>
+        <attribute name="peopleNumber" attributeType="Integer 32" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="activities" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Activity" inverseName="trip" inverseEntity="Activity"/>
+        <relationship name="dayPlans" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DayPlan" inverseName="trip" inverseEntity="DayPlan"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Expense" inverseName="trip" inverseEntity="Trip"/>
+        <relationship name="participants" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Participant" inverseName="trip" inverseEntity="Trip"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Place" inverseName="trip" inverseEntity="Trip"/>
+    </entity>
+</model>
