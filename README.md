@@ -2,6 +2,10 @@
 
 Escape Plan — приложение для организации поездок в компании. Расписание по дням, общий бюджет, карта воспоминаний и ассистент — всё в одном месте.
 
+## Ссылка на приложение в AppStore - https://apps.apple.com/ru/app/escape-plan/id6770517894?l=en-GB
+--
+### Ссылка на Figma - https://www.figma.com/design/T0vhCfXZKBUkutnLA0Ov2K/Escape-Plan?node-id=2-4&t=PMWAvu7CuhoMe3WZ-1
+
 ---
 
 ## Мои поездки
